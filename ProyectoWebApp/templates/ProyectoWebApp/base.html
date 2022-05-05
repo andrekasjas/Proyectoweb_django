@@ -1,0 +1,117 @@
+<html>
+
+<head>
+
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'ProyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %} " rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+
+     <!-- Fonts -->      
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     
+    <!-- js -->
+    <!-- <script src='{% static "ProyectoWebApp/js/nuevo.js" %}'></script> -->
+    <!-- Styles -->
+    <link href="{% static 'ProyectoWebApp/css/gestion.css' %} " rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+</head>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-block">
+      
+        <span class="site-heading-lower">Gestión de Pedidos</span>
+    </h1>
+
+ <!-- session -->
+  <div style="color: white; text-align: right; margin-right: 30px;">
+    {% if user.is_authenticated %}
+      Bienvenido: &nbsp {{user.username}}
+      <a href="{% url 'cerrar_sesion' %}" class="link" style="margin-left: 40px;">Cerrar Sesion</a>
+    {% else %}
+      <a href="{% url 'logear' %}" class="link" style="margin: 70px;">Inicia Sesion</a>
+      <a href="{% url 'autenticacion' %}" class="link" >Resgistrarte</a>
+    {% endif %}
+  </div>
+
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'inicio' %}">Gestión de Pedidos</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item {% if request.path == '/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'inicio' %}">Inicio</a>
+          </li>
+          <li class="nav-item {% if request.path|slice:':11' == '/servicios/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item {% if request.path|slice:':8' == '/tienda/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'tienda' %}">Tienda</a>
+          </li>
+          
+            <li class="nav-item {% if request.path|slice:':10' == '/contacto/' %} active {% endif %} px-lg-4">
+              <a class="nav-link text-uppercase text-expanded"  href="{% url 'contacto' %}">Contacto</a>
+            </li>
+          
+          <li class="nav-item {% if request.path|slice:':6' == '/blog/' %} active {% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+    <!-- Content -->
+    {% block content %}
+    {% endblock  %}
+
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="sample.html" class="link">Política de privacidad</a> ·
+        	<a href="sample.html" class="link">Aviso legal</a> ·
+        	<a href="sample.html" class="link">Cookies</a>
+		</p>
+        <p class="m-0 mbt1">&copy; Gestión de Pedidos 2020</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'ProyectoWebApp/vendor/jquery/jquery.min.js' %} "></script>
+    <script src="{% static 'ProyectoWebApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>

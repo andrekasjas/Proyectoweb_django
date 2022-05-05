@@ -1,0 +1,21 @@
+{% extends 'ProyectoWebApp/base.html' %}
+{% load static %}
+{% block content %}
+        <div style="float: right; margin: 0 30px ;">
+            {% include 'Carrito/widget.html' %}
+        </div>
+        <div class="row">
+            {% for producto in productos %}
+                <div class="col-auto" style="margin: 20px auto;">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{producto.imagen.url}}" class="card-img-top" alt="..." style="width: auto; height: 200px;">
+                        <div class="card-body" style="text-align: center;">
+                            <h5 class="card-title">{{producto.nombre|upper}}</h5>
+                            <p class="card-text">{{producto.precio}}</p>
+                        </div>
+                        <a href="{% url 'carrito:agregar' producto.id %}" class="btn btn-success btn-lg btn-block">Agregar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>   
+{% endblock  %}

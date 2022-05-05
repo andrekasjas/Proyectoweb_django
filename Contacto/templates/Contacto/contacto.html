@@ -1,0 +1,23 @@
+{% extends 'ProyectoWebApp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="contenedorFormulario">
+        {% if 'valido' in request.GET %}
+            <div class="alert alert-success">Informacion enviada correctamente</div>
+        {% endif %}
+        
+        <form action="" method="POST" style="text-align: center;">{% csrf_token %}
+            {% if user.is_authenticated %}
+                <table style="color: white; position: relative; margin: 10px auto; left: -4%;" >
+                    {{formulario.as_table}}
+                </table>
+                <button type="submit" class="btn btn-success">Enviar</button>
+            {% else %}
+                <div class="alert alert-danger">Requiere
+                    <a href="{% url 'logear' %}" class="alert-link">Iniciar Sesion</a>
+                </div>
+            {% endif %}
+        </form>
+        
+    </div>
+{% endblock  %}

@@ -1,0 +1,48 @@
+<table class="table table-bordered" style="color: white;">
+    <thead>
+        <tr>
+            <th colspan="4" class="text-center">Carrito de Compras</th>
+        </tr>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if request.session.carrito.items %}
+            {% for key,value in request.session.carrito.items %}
+                <tr class="text-center">
+                    <td>{{value.nombre}}</td>
+                    <td>{{value.cantidad}}</td>
+                    <td>{{value.precio}}</td>
+                    <td>
+                        <a href="{% url 'carrito:agregar' value.producto_id %}" class="btn btn-sm btn-success" >+</a>
+                        <a href="{% url 'carrito:restar' value.producto_id %}" class="btn btn-sm btn-success" >-</a><br>
+                    </td>
+                </tr>
+            {% endfor%}
+        {% else %}
+            <tr>
+                <td colspan="4">
+                    <div class="alert alert-danger text-center">
+                        No tiene productos
+                    </div>
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                {% if user.is_authenticated %}
+                    Total: {{valor_total_carrito}}
+                {% else %}
+                    Total: <a href="{% url 'logear' %}" class="link">Inicia Sesion para ver</a>
+                {% endif %}
+                
+            </td>
+        </tr>
+    </tfoot>
+</table>
