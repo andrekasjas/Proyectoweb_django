@@ -1,4 +1,3 @@
-from ast import Try
 from django.shortcuts import render, redirect
 from .forms import Formulario_contacto
 from django.core.mail import EmailMessage

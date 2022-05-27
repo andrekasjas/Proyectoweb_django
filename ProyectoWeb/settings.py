@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
     'crispy_forms',
     'ProyectoWebApp',
     'Servicios',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'Tienda',
     'Carrito',
     'Autenticacion',
+    'Pedidos',
 ]
 
 MIDDLEWARE = [
@@ -142,8 +144,14 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #ruta para guardar la media de las paginas
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/web/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'dc1hb2uev',
+    'API_KEY' : '488964977285115',
+    'API_SECRET' : 'YItk0lXN312ES68moMdRmidaD58'
+}
 
 #configuracion para enviar correos via gmail
 
